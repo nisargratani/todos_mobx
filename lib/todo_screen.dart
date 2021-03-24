@@ -32,18 +32,22 @@ class TodoScreen extends StatelessWidget {
                   onLongPress: () {
                     list.removeTodo(list.todos[index]);
                   },
-                  title: Text(
-                    list.todos[index].name,
-                    style: TextStyle(
-                        decoration: list.todos[index].isDone == true
-                            ? TextDecoration.lineThrough
-                            : null),
+                  title: Observer(
+                    builder: (_) => Text(
+                      list.todos[index].name,
+                      style: TextStyle(
+                          decoration: list.todos[index].isDone == true
+                              ? TextDecoration.lineThrough
+                              : null),
+                    ),
                   ),
-                  trailing: Checkbox(
-                    value: list.todos[index].isDone,
-                    onChanged: (newValue) {
-                      list.updateTodo(list.todos[index], newValue);
-                    },
+                  trailing: Observer(
+                    builder: (_) => Checkbox(
+                      value: list.todos[index].isDone,
+                      onChanged: (newValue) {
+                        list.updateTodo(list.todos[index], newValue);
+                      },
+                    ),
                   ),
                 )),
       ),
